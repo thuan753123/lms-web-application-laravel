@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
     <link rel="stylesheet" href="/assets/default/css/app.css">
-    <link rel="stylesheet" href="/assets/default/css/vietnamese-translator.css">
 
     @if($isRtl)
         <link rel="stylesheet" href="/assets/default/css/rtl-app.css">
@@ -133,38 +132,7 @@
     {!! !empty(getCustomCssAndJs('js')) ? getCustomCssAndJs('js') : '' !!}
 </script>
 
-<!-- Vietnamese Auto Translator - Safe Mode -->
-<script>
-// Safe loading với error handling
-try {
-    // Load translator by default (safe mode đã được tối ưu)
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('vn-translate') !== '0') { // Chỉ tắt khi có ?vn-translate=0
-        console.log('🇻🇳 Loading LMS AI168 Vietnamese Translator...');
-        
-        // Load config first
-        const configScript = document.createElement('script');
-        configScript.src = '/assets/default/js/vietnamese-translator-config.js';
-        configScript.onload = function() {
-            // Load main script after config
-            const mainScript = document.createElement('script');
-            mainScript.src = '/assets/default/js/vietnamese-translator.js';
-            mainScript.onerror = function() {
-                console.error('❌ Failed to load LMS AI168 Vietnamese Translator');
-            };
-            document.head.appendChild(mainScript);
-        };
-        configScript.onerror = function() {
-            console.error('❌ Failed to load LMS AI168 Vietnamese Translator config');
-        };
-        document.head.appendChild(configScript);
-    } else {
-        console.log('ℹ️ Vietnamese Translator disabled. Add ?vn-translate=1 to URL to enable, or remove ?vn-translate=0 to auto-enable.');
-    }
-} catch (error) {
-    console.error('❌ Vietnamese Translator loading error:', error);
-}
-</script>
+
 
 </body>
 </html>
